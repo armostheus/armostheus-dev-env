@@ -1,0 +1,13 @@
+#Fonts
+font-family = "JetBrainsMono Nerd Font"
+font-size = 14
+
+theme = Catppuccin Mocha
+
+#Window and UI
+window-padding-x = 10
+window-padding-y = 10
+window-decoration = false
+
+#Keybindings: Ensuring macos options key acts as Meta/Alt 
+macos-option-as-alt = true
