@@ -16,6 +16,7 @@ fi
 # 2. Install Packages and Fonts
 echo "Installing packages..."
 brew update
+brew install --cask ghostty
 brew install tmux neovim ripgrep fd
 brew install --cask font-jetbrains-mono-nerd-font
 
@@ -34,7 +35,7 @@ if [ -f "$HOME/.config/ghostty/config" ] && [ ! -L "$HOME/.config/ghostty/config
 	echo "Backing up existing Ghostty config..."
 	mv ~/.config/ghostty/config ~/.config/ghostty/config.bak
 fi
-ln -sf ~/armostheus-dev-env/ghostty/config ~/.config/ghostty/config
+ln -sfn ~/armostheus-dev-env/ghostty/config ~/.config/ghostty/config
 
 # --- Tmux ---
 # If config exist and not a symlink, then back it up
@@ -42,13 +43,14 @@ if [ -f "$HOME/.tmux.conf" ] && [ ! -L "$HOME/.tmux.conf" ]; then
 	echo "Backing up existing Tmux config..."
 	mv ~/.tmux.conf ~/.tmux.conf.bak
 fi
-ln -sf ~/armostheus-dev-env/tmux/.tmux.conf ~/.tmux.conf
+ln -sfn ~/armostheus-dev-env/tmux/.tmux.conf ~/.tmux.conf
 
 # --- Neovim ---
 # Link your config to a unique name, living side by side to an existing config.
-ln -sf ~/armostheus-dev-env/nvim ~/.config/armostheus-dev-env
+ln -sfn ~/armostheus-dev-env/nvim ~/.config/armostheus-dev-env
 
 # Create an alias in your shell profile (assuming zsh on macos) to use your config by default.
+touch ~/.zshrc
 if ! grep -q "NVIM_APPNAME=armostheus-dev-env" ~/.zshrc; then
 	echo -e '\n# Use custom neovim config as default' >> ~/.zshrc
 	echo 'alias nvim="NVIM_APPNAME=armostheus-dev-env nvim"' >> ~/.zshrc
